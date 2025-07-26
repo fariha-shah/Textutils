@@ -4,7 +4,9 @@ import About from './Components/About';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
 import Alert from './Components/Alert';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+// ✅ Use HashRouter instead of BrowserRouter
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -13,7 +15,7 @@ function App() {
   const showAlert = (message, type) => {
     setAlert({
       msg: message,
-      type: type
+      type: type,
     });
     setTimeout(() => setAlert(null), 2000);
   };
@@ -21,36 +23,49 @@ function App() {
   const handleModeChange = (color) => {
     if (color === 'dark') {
       setMode('dark');
-      document.body.style.backgroundColor = 'gray';
-      showAlert("Dark Mode has been enabled!!!", "success");
-      document.title = "TextUtil - Dark Mode";
+      document.body.style.backgroundColor = '#464d53ff';
+      showAlert('Dark Mode has been enabled!!!', 'success');
+      document.title = 'TextUtil - Dark Mode';
     } else if (color === 'blue') {
       setMode('blue');
-      document.body.style.backgroundColor = 'blue';
-      showAlert("Blue Mode has been enabled!!!", "success");
-      document.title = "TextUtil - Blue Mode";
+      document.body.style.backgroundColor = '#56abebff';
+      showAlert('Blue Mode has been enabled!!!', 'success');
+      document.title = 'TextUtil - Blue Mode';
     } else if (color === 'green') {
       setMode('green');
-      document.body.style.backgroundColor = 'green';
-      showAlert("Green Mode has been enabled!!!", "success");
-      document.title = "TextUtil - Green Mode";
+      document.body.style.backgroundColor = '#a1edb8ff';
+      showAlert('Green Mode has been enabled!!!', 'success');
+      document.title = 'TextUtil - Green Mode';
     } else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
-      showAlert("Light Mode has been enabled!!", "success");
-      document.title = "TextUtil - Light Mode";
+      showAlert('Light Mode has been enabled!!', 'success');
+      document.title = 'TextUtil - Light Mode';
     }
   };
 
   return (
     <>
       <Router>
-        <Navbar title="TEXTUTILS" mode={mode} handleModeChange={handleModeChange} />
+        <Navbar
+          title="TEXTUTILS"
+          mode={mode}
+          handleModeChange={handleModeChange}
+        />
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<TextForm showAlert={showAlert} heading="Message" mode={mode} />} />
+            <Route path="/about" element={<About mode={mode} />} />
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  showAlert={showAlert}
+                  heading="TextUtils- Word Counter Character Counter"
+                  mode={mode}
+                />
+              }
+            />
           </Routes>
         </div>
       </Router>
