@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import './App.css';
-import About from './Components/About';
+//import About from './Components/About';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
 import Alert from './Components/Alert';
 
-// ✅ Use HashRouter instead of BrowserRouter
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+// import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -46,29 +45,28 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar
-          title="TEXTUTILS"
-          mode={mode}
-          handleModeChange={handleModeChange}
-        />
-        <Alert alert={alert} />
-        <div className="container my-3">
-          <Routes>
+      {/* <Router> */}
+      <Navbar
+        title="TEXTUTILS"
+        mode={mode}
+        handleModeChange={handleModeChange}
+      />
+      <Alert alert={alert} />
+      <div className="container my-3">
+        {/* <Routes>
             <Route path="/about" element={<About mode={mode} />} />
             <Route
               path="/"
-              element={
-                <TextForm
-                  showAlert={showAlert}
-                  heading="TextUtils- Word Counter Character Counter"
-                  mode={mode}
-                />
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
+              element={ */}
+        <TextForm
+          showAlert={showAlert}
+          heading="TextUtils - Word Counter Character Counter"
+          mode={mode}
+        />
+        {/* } />
+          </Routes> */}
+      </div>
+      {/* </Router> */}
     </>
   );
 }
